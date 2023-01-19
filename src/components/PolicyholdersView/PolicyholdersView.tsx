@@ -21,7 +21,7 @@ type TPolicyholder = {
 }
 
 function PolicyholdersView() {
-  const [policyholders, setPolicyholders] = useState([] as TPolicyholder[])
+  const [policyholders, setPolicyholders] = useState<TPolicyholder[]>([])
   const getPolicyholders = async () => {
     try {
       const response = await axios.get('https://fe-interview-technical-challenge-api-git-main-sure.vercel.app/api/policyholders');
