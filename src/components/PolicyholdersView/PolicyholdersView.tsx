@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import InfoTable from '../InfoTable';
 
 type TPolicyholder = {
@@ -17,6 +17,20 @@ type TPolicyholder = {
   isPrimary?: boolean;
 }
 
+const postPolicyholderPayload = {
+  "name": "Elaine Benes",
+  "age": 60,
+  "address": {
+      "line1": "16 West 75th Street",
+      "line2": "APT 2G",
+      "city": "New York",
+      "state": "NY",
+      "postalCode": "10023",
+  },
+  "phoneNumber": "1-234-867-5309",
+  "isPrimary": false
+}
+
 function PolicyholdersView() {
   const [policyholders, setPolicyholders] = useState([] as TPolicyholder[])
   const getPolicyholders = async () => {
@@ -26,13 +40,24 @@ function PolicyholdersView() {
       setPolicyholders(policyholders);
     }
     catch (error) {
-      console.log(`Error: ${error}`)
+      console.log(`Error: ${error}`);
     }
   }
 
   useEffect(() => {
-    getPolicyholders()
+    getPolicyholders();
   }, [])
+
+  const handlePostPolicyholder = async () => {
+    try {
+      const response = await axios.post('https://fe-interview-technical-challenge-api-git-main-sure.vercel.app/api/policyholders', postPolicyholderPayload);
+      const policyholders = response.data.policyHolders;
+      console.log(policyholders);
+    }
+    catch (error) {
+      console.log(`Error: ${error}`);
+    }
+  }
 
   return (
     <Box>
@@ -63,6 +88,21 @@ function PolicyholdersView() {
           <InfoTable key={index} header={`Policy Holder ${index + 1}`} rows={rows} />
         )
       })}
+      <Box
+        sx={{
+          paddingTop: '16px',
+          textAlign: 'center',
+        }}
+      >
+        <Button
+          onClick={handlePostPolicyholder}
+          variant="contained"
+          color="primary"
+          size="large"
+        >
+          Add a policyholder
+        </Button>
+      </Box>
     </Box>
   );
 }
