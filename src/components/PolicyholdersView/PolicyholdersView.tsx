@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Box, Button, Divider } from '@mui/material';
 import InfoTable from '../InfoTable';
 import CheckList from '../CheckList';
+import postPolicyholderPayload from '../../constants/postPolicyholderPayload';
 import tasks from '../../constants/tasks';
 
 type TPolicyholder = {
@@ -17,20 +18,6 @@ type TPolicyholder = {
   };
   phoneNumber: string;
   isPrimary?: boolean;
-}
-
-const postPolicyholderPayload = {
-  "name": "Elaine Benes",
-  "age": 60,
-  "address": {
-      "line1": "16 West 75th Street",
-      "line2": "APT 2G",
-      "city": "New York",
-      "state": "NY",
-      "postalCode": "10023",
-  },
-  "phoneNumber": "1-234-867-5309",
-  "isPrimary": false
 }
 
 function PolicyholdersView() {
@@ -78,11 +65,11 @@ function PolicyholdersView() {
             value: `${policyholder.address.line1} ${policyholder.address.line2 || ''}\n${policyholder.address.city}, ${policyholder.address.state} ${policyholder.address.postalCode}`
           },
           {
-            key: 'Phone number',
+            key: 'Phone Number',
             value: policyholder.phoneNumber
           },
           {
-            key: 'Primary policyholder',
+            key: 'Primary Policyholder',
             value: policyholder.isPrimary ? 'Yes' : 'No'
           }
         ]

@@ -12,7 +12,10 @@ import {
 
 type TCheckList = {
   header: string;
-  tasks: string[];
+  tasks: {
+    title: string,
+    description: string,
+  }[];
 }
 
 function CheckList({ header, tasks }: TCheckList) {
@@ -26,8 +29,8 @@ function CheckList({ header, tasks }: TCheckList) {
         {header}
       </Typography>
       <List sx={{ width: '100%' }}>
-      {tasks.map((value, index) => {
-        const labelId = `checkbox-list-label-${value}`;
+      {tasks.map(({ title, description }, index) => {
+        const labelId = `checkbox-list-label-${title}`;
 
         return (
           <ListItem
@@ -43,7 +46,7 @@ function CheckList({ header, tasks }: TCheckList) {
                   inputProps={{ 'aria-labelledby': labelId }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`${value}`} />
+              <ListItemText id={labelId} primary={title} secondary={description} />
             </ListItemButton>
           </ListItem>
         );
