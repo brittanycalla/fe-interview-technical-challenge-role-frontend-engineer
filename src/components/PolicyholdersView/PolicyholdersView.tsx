@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Divider } from '@mui/material';
 import InfoTable from '../InfoTable';
+import CheckList from '../CheckList';
+import tasks from '../../constants/tasks';
 
 type TPolicyholder = {
   name: string;
@@ -87,7 +89,7 @@ function PolicyholdersView() {
         return (
           <InfoTable 
             key={index}
-            sx={{ marginBottom: "16px" }}
+            sx={{ marginBottom: '16px' }}
             header={`Policy Holder ${index + 1}`}
             rows={rows}
           />
@@ -107,6 +109,17 @@ function PolicyholdersView() {
         >
           Add a policyholder
         </Button>
+      </Box>
+      <Divider sx={{ marginY: '48px' }} />
+      <Box sx={{ paddingBottom: '16px' }}>
+        <Box sx={{ textAlign: 'center' }}>
+          <img
+            src="https://media.giphy.com/media/Yx5ns1mSPBle0/giphy.gif"
+            alt="A cool dog typing on a laptop"
+            style={{ maxWidth: '100%', paddingBottom: '16px' }}
+          />
+        </Box>
+        <CheckList header="Remaining To-dos" tasks={tasks} />
       </Box>
     </Box>
   );
