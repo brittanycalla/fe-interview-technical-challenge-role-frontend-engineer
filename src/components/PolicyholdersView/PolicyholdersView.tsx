@@ -52,7 +52,7 @@ function PolicyholdersView() {
     try {
       const response = await axios.post('https://fe-interview-technical-challenge-api-git-main-sure.vercel.app/api/policyholders', postPolicyholderPayload);
       const policyholders = response.data.policyHolders;
-      console.log(policyholders);
+      setPolicyholders(policyholders);
     }
     catch (error) {
       console.log(`Error: ${error}`);
@@ -85,7 +85,12 @@ function PolicyholdersView() {
           }
         ]
         return (
-          <InfoTable key={index} header={`Policy Holder ${index + 1}`} rows={rows} />
+          <InfoTable 
+            key={index}
+            sx={{ marginBottom: "16px" }}
+            header={`Policy Holder ${index + 1}`}
+            rows={rows}
+          />
         )
       })}
       <Box
