@@ -13,24 +13,33 @@ function Layout({ children, onFooterClick }: TLayout) {
   return (
     <>
       <Box
-        component="main"
         sx={{
           display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
         }}
       >
-        <NavBar links={links} />
         <Box
+          component="main"
           sx={{
-            margin: '0 auto',
-            maxWidth: '750px',
-            padding: '48px 16px',
+            display: 'flex',
+            flex: 1,
           }}
         >
-          {children}
-          <InstructionsBar onClick={onFooterClick} />
+          <NavBar links={links} />
+          <Box
+            sx={{
+              margin: '0 auto',
+              maxWidth: '750px',
+              padding: '48px 16px',
+            }}
+          >
+            {children}
+            <InstructionsBar onClick={onFooterClick} />
+          </Box>
         </Box>
+        <Footer />
       </Box>
-      <Footer />
     </>
   );
 }
