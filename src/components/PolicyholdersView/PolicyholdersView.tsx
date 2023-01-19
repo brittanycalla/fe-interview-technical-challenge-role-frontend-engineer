@@ -77,7 +77,7 @@ function PolicyholdersView() {
           <InfoTable 
             key={index}
             sx={{ marginBottom: '16px' }}
-            header={`Policy Holder ${index + 1}`}
+            header={`Policyholder ${index + 1}`}
             rows={rows}
           />
         )
